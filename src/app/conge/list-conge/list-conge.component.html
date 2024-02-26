@@ -1,0 +1,82 @@
+
+<div class="nav-item" *ngIf="name =='admin'">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2> Liste des Congés </h2>
+    </div>
+    <div class="panel-body">
+      <table id="example" class="table table-striped table-bordered table-sm row-border hover" cellspacing="0" width="100%">
+
+        <thead>
+        <tr>
+          <th >Date Debut</th>
+          <th >Date Fin</th>
+          <th >Nom de l'employé</th>
+          <th >Matricule</th>
+          <th >Nombres des Jours</th>
+          <th >Etat </th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let conge of conges | async">
+          <td>{{(conge.dateDebut | date: 'yyyy-MM-dd')?.substring(0, 10)}}</td>
+          <td>{{(conge.dateFin | date: 'yyyy-MM-dd')?.substring(0, 10)}}</td>
+          <td>{{conge.nameC}}</td>
+          <td>{{conge.matriculeC}}</td>
+          <td>{{conge.NbrJours}}</td>
+          <td>{{conge.etat}}</td>
+
+          <td>
+            <button style='margin-right:16px' (click)="deleteConge(conge.id)" class="btn btn-primary">Delete</button>
+            <button style='margin-right:16px' (click)="updateConge(conge.id)" class="btn btn-success">Edit details</button>
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <button [routerLink]="['/addConge']" class="btn btn-success py-2 px-4 mr-3">ajouter conge</button>
+</div>
+
+
+
+<div class="nav-item" *ngIf="name !=='admin'">
+  <div class="nav-item" *ngIf="matricule$ | async as matricule">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h2> Liste des Congés </h2>
+      </div>
+      <div class="panel-body">
+        <table id="example2" class="table table-striped table-bordered table-sm row-border hover" cellspacing="0" width="100%">
+          <thead>
+          <tr>
+            <th>Date Debut</th>
+            <th>Date Fin</th>
+            <th>Nombres des jours</th>
+            <th >Etat </th>
+
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let conge of conges | async">
+            <ng-container *ngIf="conge.matriculeC === matricule">
+              <td>{{(conge.dateDebut | date: 'yyyy-MM-dd')?.substring(0, 10)}}</td>
+              <td>{{(conge.dateFin | date: 'yyyy-MM-dd')?.substring(0, 10)}}</td>
+              <td>{{ conge.NbrJours }}</td>
+              <td>{{ conge.etat }}</td>
+
+            </ng-container>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+</div>

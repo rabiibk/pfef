@@ -1,0 +1,34 @@
+<h3>Ajouter absenecs</h3>
+<div [hidden]="submitted" style="width: 400px;">
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="dateDebut">dateDebut</label>
+            <input type="text" class="form-control" id="dateDebut" required [(ngModel)]="absence.dateDebut" name="dateDebut">
+        </div>
+
+        <div class="form-group">
+            <label for="dateFin">dateFin</label>
+            <input type="text" class="form-control" id="dateFin" required [(ngModel)]="absence.dateFin" name="dateFin">
+        </div>
+
+
+        <div class="form-group">
+            <label for="nameE">Name</label>
+            <input type="text" class="form-control" id="nameE" required [(ngModel)]="absence.nameE" name="nameE">
+        </div>
+
+        <div class="form-group">
+            <label for="matriculeE">Matricule</label>
+            <input type="text" class="form-control" id="matriculeE" required [(ngModel)]="absence.matriculeE" name="matriculeE">
+        </div>
+        <div class="form-group">
+            <label for="motif">motif</label>
+            <input type="text" class="form-control" id="motif" required [(ngModel)]="absence.motif" name="motif">
+        </div>
+
+
+
+        <button class="btn btn-success">Submit</button>
+    </form>
+</div>
+

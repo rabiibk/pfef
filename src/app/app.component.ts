@@ -1,13 +1,29 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './service/auth.service';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'angular8-crud-demo-master';
+export class AppComponent implements OnInit {
+  isLoggedIn = false;
+  isAdmin = false;
+  name: string | null = null;
+
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.authService.getUserName().subscribe(
+        name => {
+          this.name = name;
+          this.isLoggedIn = !!name;
+          this.isAdmin = name === 'admin';
+        },
+        error => {
+          console.error('Erreur lors de la récupération du nom d\'utilisateur:', error);
+        }
+    );
+  }
 }

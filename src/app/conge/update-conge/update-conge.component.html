@@ -1,0 +1,38 @@
+
+<h3> Update Congé </h3>
+<form (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="dateDebut">DateDebut</label>
+    <input type="text" class="form-control" id="dateDebut" [(ngModel)]="conge.dateDebut" name="dateDebut">
+
+  </div>
+  <div class="form-group">
+    <label for="dateFin">DateFin</label>
+    <input type="text" class="form-control" id="dateFin" [(ngModel)]="conge.dateFin" name="dateFin">
+
+  </div>
+  <div class="form-group">
+    <label for="nameC">Name</label>
+    <input type="text" class="form-control" id="nameC" [(ngModel)]="conge.nameC" name="nameC">
+
+  </div>
+  <div class="form-group">
+    <label for="matriculeC">Matricule</label>
+    <input type="text" class="form-control" id="matriculeC" [(ngModel)]="conge.matriculeC" name="matriculeC">
+
+  </div>
+  <div class="form-group">
+    <label for="NbrJours">Nombre des jours</label>
+    <input type="text" class="form-control" id="NbrJours" [(ngModel)]="conge.NbrJours" name="NbrJours">
+
+  </div>
+  <div class="form-group">
+    <label for="etat">Etat</label>
+    <input type="text" class="form-control" id="etat" [(ngModel)]="conge.etat" name="etat">
+
+  </div>
+
+  <button style='margin-right:16px' class="btn btn-success">Submit</button>
+  <button style='margin-right:16px' (click)="list()" class="btn btn-success">Back to Congés</button>
+
+</form>

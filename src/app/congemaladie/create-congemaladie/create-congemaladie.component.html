@@ -1,0 +1,39 @@
+<h3>Ajouter Congé Maladie</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="dateDebut">dateDebut</label>
+      <input type="text" class="form-control" id="dateDebut" required [(ngModel)]="congeMaladie.dateDebut" name="dateDebut">
+    </div>
+
+    <div class="form-group">
+      <label for="dateFin">dateFin</label>
+      <input type="text" class="form-control" id="dateFin" required [(ngModel)]="congeMaladie.dateFin" name="dateFin">
+    </div>
+
+
+    <div class="form-group">
+      <label for="nameM">Name</label>
+      <input type="text" class="form-control" id="nameM" required [(ngModel)]="congeMaladie.nameM" name="nameM">
+    </div>
+
+    <div class="form-group">
+      <label for="matriculeM">Matricule</label>
+      <input type="text" class="form-control" id="matriculeM" required [(ngModel)]="congeMaladie.matriculeM" name="matriculeM">
+    </div>
+
+    <div class="form-group">
+      <label for="nbrjours">nbrjours</label>
+      <input type="text" class="form-control" id="nbrjours" required [(ngModel)]="congeMaladie.nbrjours" name="nbrjours">
+    </div>
+    <div class="form-group">
+      <label for="motif">motif</label>
+      <input type="text" class="form-control" id="motif" required [(ngModel)]="congeMaladie.motif" name="motif">
+    </div>
+
+
+
+    <button class="btn btn-success">Submit</button>
+  </form>
+</div>
+

@@ -1,0 +1,89 @@
+
+<div class="nav-item" *ngIf="name =='admin'">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2> Liste des Congés Maladies </h2>
+    </div>
+    <div class="panel-body">
+      <table id="example" class="table table-striped table-bordered table-sm row-border hover" cellspacing="0" width="100%">
+
+        <thead>
+        <tr>
+          <th >Date Debut</th>
+          <th >Date Fin</th>
+          <th >Nom de l'employé</th>
+          <th >Matricule</th>
+          <th >Nombre des jours</th>
+          <th >Motif</th>
+
+
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--            <li class="nav-item" *ngIf="matricule$ | async as matricule">-->
+
+        <tr *ngFor="let congeMaladie of CongeMaladies | async">
+          <td>{{(congeMaladie.dateDebut | date: 'yyyy-MM-dd')?.substring(0, 10)}}</td>
+          <td>{{(congeMaladie.dateFin | date: 'yyyy-MM-dd')?.substring(0, 10)}}</td>
+          <td>{{congeMaladie.nameM}}</td>
+          <td>{{congeMaladie.matriculeM}}</td>
+          <td>{{congeMaladie.nbrjours}}</td>
+          <td>{{congeMaladie.motif}}</td>
+
+
+
+          <td>
+
+            <button style='margin-right:16px' (click)="deleteAbsence(congeMaladie.id)" class="btn btn-primary">Delete</button>
+            <button style='margin-right:16px' (click)="updateAbsence(congeMaladie.id)" class="btn btn-success">Edit details</button>
+          </td>
+        </tr>
+        <!--            </li>-->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <button [routerLink]="['/addCongeM']" class="btn btn-success py-2 px-4 mr-3">Ajouter congé maladie</button>
+</div>
+
+
+
+<div class="nav-item" *ngIf="name !=='admin'">
+  <div class="nav-item" *ngIf="matricule$ | async as matricule">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h2> Liste des Congés maladies </h2>
+      </div>
+      <div class="panel-body">
+        <table id="example2" class="table table-striped table-bordered table-sm row-border hover" cellspacing="0" width="100%">
+          <thead>
+          <tr>
+            <th>Date Debut</th>
+            <th>Date Fin</th>
+            <th >Nombre des jours</th>
+            <th >Motif</th>
+
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let congeMaladie of CongeMaladies | async">
+            <ng-container *ngIf="congeMaladie.matriculeM === matricule">
+              <td>{{(congeMaladie.dateDebut | date: 'yyyy-MM-dd')?.substring(0, 10)}}</td>
+              <td>{{(congeMaladie.dateFin | date: 'yyyy-MM-dd')?.substring(0, 10)}}</td>
+              <td>{{congeMaladie.nbrjours}}</td>
+              <td>{{congeMaladie.motif}}</td>
+
+            </ng-container>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+</div>
