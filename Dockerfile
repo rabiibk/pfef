@@ -1,7 +1,7 @@
 # Stage 1: Builder
 FROM node:18.19.0 as builder
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 # Copier les fichiers du projet Angular dans l'image
 COPY package*.json ./
@@ -22,7 +22,7 @@ FROM nginx:alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Répertoire de construction de l'application Angular
-ARG APP_DIR=/app/dist/angular8-crud-demo-master
+ARG APP_DIR=/usr/src/app/dist/angular8-crud-demo-master
 
 
 # Copier le résultat de la construction dans le répertoire par défaut de Nginx
