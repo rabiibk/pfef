@@ -1,7 +1,7 @@
 # Stage 1: Builder
 FROM node:20.11.0 as builder
 
-WORKDIR /usr
+WORKDIR /app
 
 # Copier les fichiers du projet Angular dans l'image
 COPY package*.json ./
@@ -21,12 +21,10 @@ FROM nginx:alpine
 ## Copier le fichier de configuration Nginx personnalisé
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Répertoire de construction de l'application Angular
-#ARG APP_DIR=/app/dist/angular8-crud-demo-master
-
+RUN mkdir -p /app/share/nginx/html
 
 # Copier le résultat de la construction dans le répertoire par défaut de Nginx
-COPY --from=builder /usr/dist/angular8-crud-demo-master  /usr/share/nginx/html
+COPY --from=builder /app/dist/angular8-crud-demo-master  /usr/share/nginx/html
 #COPY --from=builder --chown=nginx:nginx $APP_DIR /usr/share/nginx/html
 
 # Exposer le port 80
