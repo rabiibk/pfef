@@ -21,7 +21,7 @@ FROM nginx:alpine
 ## Copier le fichier de configuration Nginx personnalisé
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-RUN mkdir -p /app/share/nginx/html
+RUN mkdir -p /usr/share/nginx/html
 
 # Copier le résultat de la construction dans le répertoire par défaut de Nginx
 COPY --from=builder /app/dist/angular8-crud-demo-master  /usr/share/nginx/html
