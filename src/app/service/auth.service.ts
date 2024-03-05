@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
     providedIn: 'root'
 })
 export class AuthService {
-    private baseUrl = 'http://localhost:8090';
+    private baseUrl = 'http://192.168.12.150:8090';
     private loggedIn: boolean = false;
     private name: string = '';
     private matricule: number = 0 ;
