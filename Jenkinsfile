@@ -61,7 +61,20 @@ pipeline {
                 sh "docker build -t angular:angular /var/lib/jenkins/workspace/pfef"
             }
         }
-        stage('Push Docker Image to Nexus') {
+         stage('Scanner avec TRIVY') {
+                            steps {
+                                sh 'chmod 777 /var/lib/jenkins/workspace/pfef/angular-report.txt'
+                                sh 'trivy image --timeout 60m --output /var/lib/jenkins/workspace/pfef/angular-report.txt angular:angular'
+                            }
+                        }
+         stage('Push Docker Image to Docker Hub') {
+                     steps {
+                         sh "docker tag angular:angular ${DOCKER_REPO}:${DOCKER_IMAGE_TAG}"
+                         sh "docker login -u rabii1990 -p rabiiradar2012"
+                         sh "docker push ${DOCKER_REPO}:${DOCKER_IMAGE_TAG}"
+                     }
+                 }
+         stage('Push Docker Image to Nexus') {
                     steps {
                         withCredentials([usernamePassword(credentialsId: 'nexus', usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
                             sh "docker login -u admin -p nexus http://192.168.164.129:8083/"
@@ -76,22 +89,7 @@ pipeline {
 
                       }
                     }
-                }
-
-        stage('Scanner avec TRIVY') {
-                    steps {
-                        sh 'chmod 777 /var/lib/jenkins/workspace/pfef/angular-report.txt'
-                        sh 'trivy image --timeout 60m --output /var/lib/jenkins/workspace/pfef/angular-report.txt angular:angular'
-                    }
-                }
-
-        stage('Push Docker Image to Docker Hub') {
-            steps {
-                sh "docker tag angular:angular ${DOCKER_REPO}:${DOCKER_IMAGE_TAG}"
-                sh "docker login -u rabii1990 -p rabiiradar2012"
-                sh "docker push ${DOCKER_REPO}:${DOCKER_IMAGE_TAG}"
-            }
-        }
+         }
     }
 
     post {
