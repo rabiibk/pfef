@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        NEXUS_URL = 'http://192.168.12.150:8081'
+        NEXUS_URL = 'http://192.168.164.129:8081'
         NEXUS_REPO = 'repository/maven-releases'
         ARTIFACT_GROUP = 'front.angular'
         ARTIFACT_NAME = 'angular8-crud-demo-master'
@@ -64,7 +64,7 @@ pipeline {
         stage('Push Docker Image to Nexus') {
                     steps {
                         withCredentials([usernamePassword(credentialsId: 'nexus', usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
-                            sh "docker login -u admin -p nexus http://192.168.12.150:8083/"
+                            sh "docker login -u admin -p nexus http://192.168.164.129:8083/"
                             //sh "docker login -u admin --password-stdin http://192.168.12.150:8083/ < ~/.docker/config.json"
 
                         }
@@ -75,6 +75,13 @@ pipeline {
                             sh "docker push 192.168.12.150:8083/${DOCKER_IMAGE_NAME2}:${DOCKER_IMAGE_TAG2}"
 
                       }
+                    }
+                }
+
+        stage('Scanner avec TRIVY') {
+                    steps {
+                        sh 'chmod 777 /var/lib/jenkins/workspace/pfef/angular-report.txt'
+                        sh 'trivy image --timeout 60m --output /var/lib/jenkins/workspace/pfef/angular-report.txt angular:angular'
                     }
                 }
 
