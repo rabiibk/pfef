@@ -77,7 +77,7 @@ pipeline {
         stage('Push Docker Image to Nexus') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus', usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
-                    sh "export DOCKER_TLS_VERIFY=0 && echo \$NEXUS_PASSWORD | docker login -u admin --password-stdin http://192.168.164.129:8083/"
+                    sh "echo \$NEXUS_PASSWORD | docker login -u admin --password-stdin 192.168.164.129:8083"
                 }
 
                 script {
@@ -86,6 +86,7 @@ pipeline {
                 }
             }
         }
+
 
 
 
