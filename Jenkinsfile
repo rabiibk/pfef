@@ -78,7 +78,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus', usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
 
-                    sh "docker login -u admin -p \$NEXUS_PASSWORD --insecure http://192.168.164.129:8083/"
+                     sh "echo \$NEXUS_PASSWORD | docker login -u admin --password-stdin 192.168.164.129:8083"
                     // sh "docker login -u admin -p nexus http://192.168.164.129:8083/"
                 }
 
