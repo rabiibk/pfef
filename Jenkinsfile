@@ -78,13 +78,13 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus', usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
 
-                     sh "echo \$NEXUS_PASSWORD | docker login -u admin --password-stdin 192.168.164.129:8083"
+                     sh "echo \$NEXUS_PASSWORD | docker login -u admin --password-stdin http://192.168.164.129:8083"
                     // sh "docker login -u admin -p nexus http://192.168.164.129:8083/"
                 }
 
                 script {
-                    sh "docker tag angular:angular 192.168.164.129:8083/${DOCKER_IMAGE_NAME2}:${DOCKER_IMAGE_TAG2}"
-                    sh "docker push 192.168.164.129:8083/${DOCKER_IMAGE_NAME2}:${DOCKER_IMAGE_TAG2}"
+                    sh "docker tag angular:angular http://192.168.164.129:8083/${DOCKER_IMAGE_NAME2}:${DOCKER_IMAGE_TAG2}"
+                    sh "docker push http://192.168.164.129:8083/${DOCKER_IMAGE_NAME2}:${DOCKER_IMAGE_TAG2}"
                 }
             }
         }
