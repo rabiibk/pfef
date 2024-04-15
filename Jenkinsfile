@@ -9,8 +9,8 @@ pipeline {
         ARTIFACT_VERSION = "1.0.${env.BUILD_NUMBER}"
         DOCKER_REPO = 'rabii1990/frontend'
         DOCKER_IMAGE_TAG = 'angular'
-        DOCKER_IMAGE_NAME2 = 'rabiifront2'
-        DOCKER_IMAGE_TAG2 = 'angular2'
+        DOCKER_IMAGE_NAME2 = 'angular'
+        DOCKER_IMAGE_TAG2 = 'angular'
     }
 
     tools {
@@ -86,7 +86,7 @@ pipeline {
 
                 script {
                     sh "docker tag angular:angular http://192.168.164.129:8083/${DOCKER_IMAGE_NAME2}:${DOCKER_IMAGE_TAG2}"
-                    sh "docker push http://192.168.164.129:8083/docker-image/${DOCKER_IMAGE_NAME2}:${DOCKER_IMAGE_TAG2}"
+                    sh "docker push http://192.168.164.129:8083/${DOCKER_IMAGE_NAME2}:${DOCKER_IMAGE_TAG2}"
                 }
             }
         }
