@@ -35,6 +35,11 @@ pipeline {
                 }
             }
         }
+        stage('SONARQUBE') {
+                    steps {
+                        sh 'mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=sonar'
+                    }
+                }
 
         stage('Build') {
             steps {
