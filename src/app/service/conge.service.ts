@@ -10,7 +10,7 @@ import {ApiResponse} from "../model/api.response";
 export class CongeService {
 
   constructor(private http: HttpClient) { }
-  private baseUrl = 'http://192.168.12.150:8090/api/conges/';
+  private baseUrl = 'http://192.168.164.129:8090/api/conges/';
 
   getConges(): Observable<Conge[]> {
     return this.http.get<Conge[]>(this.baseUrl);

@@ -10,7 +10,7 @@ import {Absence} from "../model/absence.model";
 export class AbsenceService {
 
   constructor(private http: HttpClient) { }
-  private baseUrl = 'http://192.168.12.150:8090/api/absences/';
+  private baseUrl = 'http://192.168.164.129:8090/api/absences/';
 
   getAbsences(): Observable<Absence[]> { // Modifiez le type de retour ici
     return this.http.get<Absence[]>(this.baseUrl); // Retourne directement un Observable de tableau d'Employee

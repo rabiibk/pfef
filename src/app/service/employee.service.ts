@@ -9,7 +9,7 @@ import { Employee } from '../model/employee.model';
 export class EmployeeService {
 
   constructor(private http: HttpClient) { }
-  private baseUrl = 'http://192.168.12.150:8090/api/employees/';
+  private baseUrl = 'http://192.168.164.129:8090/api/employees/';
 
   getEmployees(): Observable<Employee[]> { // Modifiez le type de retour ici
     return this.http.get<Employee[]>(this.baseUrl); // Retourne directement un Observable de tableau d'Employee

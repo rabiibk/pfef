@@ -10,7 +10,7 @@ import {ApiResponse} from "../model/api.response";
 export class CongemaladieService {
 
   constructor(private http: HttpClient) { }
-  private baseUrl = 'http://192.168.12.150:8090/api/congesmaladies/';
+  private baseUrl = 'http://192.168.164.129:8090/api/congesmaladies/';
 
   getCongesMaladie(): Observable<CongeMaladie[]> { // Modifiez le type de retour ici
     return this.http.get<CongeMaladie[]>(this.baseUrl); // Retourne directement un Observable de tableau d'Employee
