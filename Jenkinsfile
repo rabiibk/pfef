@@ -27,6 +27,15 @@ pipeline {
             }
         }
 
+         stage('SonarQube Analysis') {
+            steps {
+                script {
+
+                    sh "/var/lib/jenkins/workspace/sonar-scanner/sonar-scanner-4.6.0.2311-linux/bin/sonar-scanner -Dsonar.projectKey=angular8-crud-demo -Dsonar.sources=src -Dsonar.host.url=http://192.168.164.129:9000 -Dsonar.login=9b126b83454c2ffcd68996664a731c8de30eb27b"
+                }
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 script {
@@ -35,7 +44,7 @@ pipeline {
                 }
             }
         }
-   
+
 
         stage('Build') {
             steps {
