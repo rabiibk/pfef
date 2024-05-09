@@ -1,8 +1,8 @@
-sonar.host.url=http://localhost:9000
+sonar.host.url=http://192.168.164.129:9000
 sonar.login=admin
 sonar.password=sonar
-sonar.projectKey=angular8-crud-demo-master
-sonar.projectName=angular8-crud-demo-master
+sonar.projectKey=angular8-crud-demo
+sonar.projectName=angular8-crud-demo
 sonar.projectVersion=1.0
 sonar.sourceEncoding=UTF-8
 sonar.sources=src
